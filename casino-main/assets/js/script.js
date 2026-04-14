@@ -5,27 +5,52 @@
     var giocatore = []; //carte giocatore
     var banco  = []; //carte del banco
     var gameOver = false;
-    var saldo = 100;
+    var saldo;
     var pg = 0; //punteggio giocatore
     var pb = 0; //punteggio banco
 
 /* CARICAMENTO BODY */
 function avvio(){ 
     creaMazzo(); 
-
+    saldo = 100;
+    document.getElementById("budget").innerText=saldo;
 }
 
 /* GIOCATORE STARTA */
 function pronto(){
-    controlla();//funzione che controlla il saldo
-    avviaGioco(); //distribuzione iniziale delle carte sul tavolo
-    document.getElementById("pronto").style.display="none";
-
+    var flag = controlla();//funzione che controlla il saldo
+    if(flag){
+        avviaGioco(); //distribuzione iniziale delle carte sul tavolo
+        document.getElementById("pronto").style.display="none";
+    }
+    else{
+        alert('errore');
+        document.getElementById("budget").innerText=saldo;
+    }
 }
 
 /* CONTROLLO SALDO */
 function controlla(){
+    var budget=Number(document.getElementById("budget").innerText);
+    if(budget<0){
+        return false;
+    }
+    else{
+        return true;
+    }
+}
 
+/* PUNTATA */ // SE USO IL TASTO " - " da errore, da sistemare
+function punta(soldi){
+    backup = saldo;
+    var budget=Number(document.getElementById("budget").innerText);
+    var puntata=Number(document.getElementById("soldi").value);
+    if(soldi==1000)
+        soldi=budget;
+    budget=budget-soldi;
+    puntata=puntata+soldi;
+    document.getElementById("budget").innerText=budget;
+    document.getElementById("soldi").value=puntata;
 }
 
 /* CREAZIONE DEL MAZZO */
