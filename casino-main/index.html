@@ -14,10 +14,35 @@
                 display:flex;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+        font-family: 'Poppins', sans-serif;
+        background-color: rgba(8, 8, 8, 0.947);
+        color: white;
+        }
+
+        h1 {
+        font-family: 'Casino', cursive;
+        color: gold;
+        text-shadow: 0 0 10px orange;
+        }
+
+        button {
+        font-family: 'Showtime', cursive;
+        background: gold;
+        border: none;
+        padding: 10px 20px;
+        }
+    </style>
 </head>
 
 <body onload="avvio()">
     <div id="tavolo">
+        <div id="titolo">
+            <img src="assets/img/blackjack_only_text.svg" id="logo">
+        </div>
         <div class="carte">
             <img src="assets/img/svg-cards/coperta.svg" id="0-banco">
             <img src="assets/img/svg-cards/coperta.svg" id="1-banco">
@@ -49,7 +74,8 @@
         </div>
 
         <div id="barraBasso">
-            <div id="budget"></div>
+            <div id="budget">
+            </div>
             <div id="fiches">
                 <div id="5" onclick="punta(5)">
                     <img src="assets/img/fiches/5.png" class="fiches">
@@ -87,6 +113,7 @@
             </div>
         
         </div>
+    </div>
 </body>
 
 </html>

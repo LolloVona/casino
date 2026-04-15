@@ -6,3 +6,37 @@ body{
   width: 0;
   height: 0;
 }
+
+#titolo{
+  display: flex;
+  justify-content: center;
+}
+#logo{
+  width: 60%;
+}
+
+#tavolo{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#fiches{
+  display: flex;
+  gap: 10px;
+}
+.fiches{
+  background-color: white;
+  border-radius: 100px;
+}
+
+#barrabasso{
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+button{
+  box-shadow: 5px;
+
+}

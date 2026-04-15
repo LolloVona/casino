@@ -127,8 +127,8 @@ function mostraCarta(id,isGiocatore){
         idCarta=(banco.length-1)+"-banco";
         //modifica pb
     }
-    document.getElementById(idCarta).style.width="100px";
-    document.getElementById(idCarta).style.height="100px";
+    document.getElementById(idCarta).style.width="150px";
+    document.getElementById(idCarta).style.height="150px";
     //modifico il src dell'immagine
     nomeFile = carte[id][1];
 
@@ -152,8 +152,8 @@ function mostraCarta(id,isGiocatore){
 function cartaCoperta(){
     idCarta="1-banco";
     //ingrandire la carta
-    document.getElementById(idCarta).style.height="100px";
-    document.getElementById(idCarta).style.width="100px";
+    document.getElementById(idCarta).style.height="150px";
+    document.getElementById(idCarta).style.width="150px";
 }
 
 function carta(){
