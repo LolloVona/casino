@@ -6,8 +6,10 @@
     var banco  = []; //carte del banco
     var gameOver = false;
     var saldo;
-    var pg = 0; //punteggio giocatore
-    var pb = 0; //punteggio banco
+    //pg e pb->[0]punteggio [1]->contatoreAssi
+    var pg = [0,0]; //punteggio giocatore
+    var pb = [0,0]; //punteggio banco
+    var puntata = 0; //puntata del giocatore
 
 /* CARICAMENTO BODY */
 function avvio(){ 
@@ -31,8 +33,7 @@ function pronto(){
 
 /* CONTROLLO SALDO */
 function controlla(){
-    var budget=Number(document.getElementById("budget").innerText);
-    if(budget<0){
+    if(puntata==0){
         return false;
     }
     else{
@@ -40,17 +41,32 @@ function controlla(){
     }
 }
 
-/* PUNTATA */ // SE USO IL TASTO " - " da errore, da sistemare
+/* PUNTATA */ // 
 function punta(soldi){
     backup = saldo;
     var budget=Number(document.getElementById("budget").innerText);
-    var puntata=Number(document.getElementById("soldi").value);
+    var puntata1=Number(document.getElementById("soldi").innerText);
     if(soldi==1000)
         soldi=budget;
     budget=budget-soldi;
-    puntata=puntata+soldi;
+    puntata1=puntata1+soldi;
+    if(budget<0){
+        document.getElementById("+").disabled=true;
+        budget=budget+soldi;
+        puntata1=puntata1-soldi;
+    }
+    else
+        document.getElementById("+").disabled=false;
+    if(puntata1<0){
+        document.getElementById("-").disabled=true;
+        budget=budget+soldi;
+        puntata1=puntata1-soldi;
+    }
+    else
+        document.getElementById("-").disabled=false;
     document.getElementById("budget").innerText=budget;
-    document.getElementById("soldi").value=puntata;
+    document.getElementById("soldi").innerText=puntata1;
+    puntata = puntata1;
 }
 
 /* CREAZIONE DEL MAZZO */
@@ -108,6 +124,9 @@ function avviaGioco(){
                 cartaCoperta();
             }
         }
+        document.getElementsByClassName("punteggio")[0].style.display="block";
+        document.getElementsByClassName("punteggio")[1].style.display="block";
+        document.getElementById("gestioneSoldi").style.display="none";
 }
 
 function estrazione(){
@@ -121,11 +140,34 @@ function estrazione(){
 function mostraCarta(id,isGiocatore){
     if(isGiocatore){
         idCarta=(giocatore.length-1)+"-giocatore";
-        //modifica pg
+        if(carte[id][1]>10){
+            pg[0]=pg[0]+10;
+        }
+        else
+        {
+            pg[0]=pg[0]+carte[id][1];
+        }
+        if(carte[id][1]==1){
+            pg[0]=pg[0]+10;
+            pg[1]++;
+        }
+        document.getElementById("pg").innerText=pg[0];
     }
     else{
         idCarta=(banco.length-1)+"-banco";
         //modifica pb
+        if(carte[id][1]>10){
+            pb[0]=pb[0]+10;
+        }
+        else
+        {
+            pb[0]=pb[0]+carte[id][1];
+        }
+        if(carte[id][1]==1){
+            pb[0]=pb[0]+10;
+            pb[1]++;
+        }
+        document.getElementById("pb").innerText=pb[0];
     }
     document.getElementById(idCarta).style.width="150px";
     document.getElementById(idCarta).style.height="150px";
@@ -148,6 +190,8 @@ function mostraCarta(id,isGiocatore){
     nomeFile = nomeFile+"_of_"+carte[id][2]+".svg";
 
     document.getElementById(idCarta).src = "assets/img/svg-cards/"+nomeFile;
+    setTimeout(1000);
+    controllaPunteggio();
 }
 function cartaCoperta(){
     idCarta="1-banco";
@@ -160,4 +204,19 @@ function carta(){
     id = estrazione();
     giocatore[giocatore.length] = id;
     mostraCarta(id, true);
+}
+
+function controllaPunteggio(){  
+    if(pg[0]>21){
+        if(pg[1]==0){
+            alert("Hai perso!");
+            gameOver=true;  
+        }
+        else{
+            pg[0]=pg[0]-10;
+            pg[1]--;
+            document.getElementById("pg").innerText=pg[0];
+            controllaPunteggio();
+        }
+    }
 }

@@ -38,6 +38,10 @@
             <img src="assets/img/blackjack_only_text.svg" id="logo">
         </div>
         <div class="carte">
+
+             <div class="punteggio">
+                    <p>Banco: <span id="pb">0</span></p>
+            </div>
             <img src="assets/img/svg-cards/coperta.svg" id="0-banco">
             <img src="assets/img/svg-cards/coperta.svg" id="1-banco">
             <img src="assets/img/svg-cards/coperta.svg" id="2-banco">
@@ -65,36 +69,43 @@
             <img src="assets/img/svg-cards/coperta.svg" id="9-giocatore">
             <img src="assets/img/svg-cards/coperta.svg" id="10-giocatore">
             <img src="assets/img/svg-cards/coperta.svg" id="11-giocatore">
+
+             <div class="punteggio">
+                    <p>Punteggio: <span id="pg">0</span></p>
+            </div>
         </div>
 
         <div id="barraBasso">
-            <div id="budget">
+            <div id="gestioneSoldi">
+                <div id="budget"></div>
+                <div id="fiches">
+                    <div id="5" onclick="punta(5)">
+                        <img src="assets/img/fiches/5.png" class="fiches">
+                    </div>
+                    <div id="10" onclick="punta(10)">
+                        <img src="assets/img/fiches/10.png" class="fiches">
+                    </div>
+                    <div id="25" onclick="punta(25)">
+                        <img src="assets/img/fiches/25.png" class="fiches">
+                    </div>
+                    <div id="50" onclick="punta(50)">
+                        <img src="assets/img/fiches/50.png" class="fiches">
+                    </div>
+                    <div id="100" onclick="punta(100)">
+                        <img src="assets/img/fiches/100.png" class="fiches">
+                    </div>
+                    <div id="all" onclick="punta(1000)">
+                        <img src="assets/img/fiches/all-in.png" class="fiches">
+                    </div>
+                </div>
+                <div id="puntata">
+                    <button onclick="punta(-1)" id="-">-</button>
+                    <p id="soldi">0</p>
+                    <button onclick="punta(1)" id="+">+</button>
+                </div>
             </div>
-            <div id="fiches">
-                <div id="5" onclick="punta(5)">
-                    <img src="assets/img/fiches/5.png" class="fiches">
-                </div>
-                <div id="10" onclick="punta(10)">
-                     <img src="assets/img/fiches/10.png" class="fiches">
-                </div>
-                <div id="25" onclick="punta(25)">
-                     <img src="assets/img/fiches/25.png" class="fiches">
-                </div>
-                <div id="50" onclick="punta(50)">
-                     <img src="assets/img/fiches/50.png" class="fiches">
-                </div>
-                <div id="100" onclick="punta(100)">
-                     <img src="assets/img/fiches/100.png" class="fiches">
-                </div>
-                <div id="all" onclick="punta(1000)">
-                     <img src="assets/img/fiches/all-in.png" class="fiches">
-                </div>
-            </div>
-            <div id="puntata">
-                <button onclick="punta(-1)">-</button>
-                <input type="number" id="soldi" min="0">
-                <button onclick="punta(1)">+</button>
-
+            
+            
                 <div>
                     <button onclick="pronto()" id="pronto">Gioca</button>
                     <button onclick="carta()" id="pronto">carta</button>
@@ -102,11 +113,8 @@
                     <button  id="pronto">raddoppia</button>
                     <button  id="pronto">split</button>
                 </div>
-            
-                
             </div>
         
-        </div>
     </div>
 </body>
 
