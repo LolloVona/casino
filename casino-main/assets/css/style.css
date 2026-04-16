@@ -1,5 +1,18 @@
+/*
+  -TITOLI PRIMARI: color: #e6e6e6;
+  -TITOLI SECONDARI color: #d4af37;
+
+  -colori 'metallici': color: #c0c0c0;
+
+
+*/
+
+
+
+
 body{
   margin:0;
+   background: radial-gradient(circle at center, #0f3d2a 0%, #071a12 100%);
 }
 
 .carte img{
@@ -34,9 +47,22 @@ body{
 #barrabasso{
   margin-top: 10px;
   padding-top: 5px;
+  justify-content: space-around;
 }
 
 button{
-  box-shadow: 5px;
+  background: linear-gradient(145deg, #d4af37, #b8962e);
+  color: #000;
+  height: 30px;
+  width: 75px;
+  color: #e6e6e6;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
 
+button:hover{
+  cursor: pointer;
+  box-shadow: black 10px;
+  background: linear-gradient(145deg, #ffd700, #c9a227);
 }
