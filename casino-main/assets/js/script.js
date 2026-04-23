@@ -13,9 +13,17 @@
 
 /* CARICAMENTO BODY */
 function avvio(){ 
-    creaMazzo(); 
+    nascondiButton();
+    creaMazzo();
     saldo = 100;
     document.getElementById("budget").innerText=saldo;
+}
+function nascondiButton(){
+    document.getElementById("stai").style.display="none";
+    document.getElementById("raddoppia").style.display="none";
+    document.getElementById("split").style.display="none";
+    document.getElementById("riavvia").style.display="none";
+    document.getElementById("carta").style.display="none";
 }
 
 /* GIOCATORE STARTA */
@@ -108,11 +116,13 @@ function avviaGioco(){
     //dobbiamo fare 4 estrazioni iniziali
         contG = 0;
         contB = 0;
+        var controlloSplit=[];
         for(i = 0;i<4;i++){
             id = estrazione();
             
             if(i%2 == 0){ //se pari del giocatore
                 giocatore[contG] = id;
+                controlloSplit[contG]=carte[id][1];
                 contG++;
                 mostraCarta(id,true);
             }else{
@@ -127,6 +137,9 @@ function avviaGioco(){
         document.getElementsByClassName("punteggio")[0].style.display="block";
         document.getElementsByClassName("punteggio")[1].style.display="block";
         document.getElementById("gestioneSoldi").style.display="none";
+        if(controlloSplit[0]==controlloSplit[1]){
+            document.getElementById("split").style.display="inline";
+        }
 }
 
 function estrazione(){
@@ -192,6 +205,14 @@ function mostraCarta(id,isGiocatore){
     document.getElementById(idCarta).src = "assets/img/svg-cards/"+nomeFile;
     setTimeout(1000);
     controllaPunteggio();
+    if(gameOver){
+        nascondiButton();
+        document.getElementById("riavvia").style.display="inline";
+    }
+    else{
+        document.getElementById("carta").style.display="inline";
+        document.getElementById("stai").style.display="inline";
+    }
 }
 function cartaCoperta(){
     idCarta="1-banco";
