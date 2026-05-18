@@ -208,6 +208,7 @@ function mostraCarta(id,isGiocatore){
     if(gameOver){
         nascondiButton();
         document.getElementById("riavvia").style.display="inline";
+        document.getElementById("err").style.display="block";
     }
     else{
         document.getElementById("carta").style.display="inline";
@@ -230,7 +231,6 @@ function carta(){
 function controllaPunteggio(){  
     if(pg[0]>21){
         if(pg[1]==0){
-            alert("Hai perso!");
             gameOver=true;  
         }
         else{
@@ -240,4 +240,16 @@ function controllaPunteggio(){
             controllaPunteggio();
         }
     }
+}
+
+function stai(){
+    mostraCarta(banco[1], false); //mostro la seconda carta (false siccome è banco)
+    //controllo se è minore di 17 in quanto se minore, deve ripescare.
+    while(pb < 17){
+        nuovoId = estrazione();
+        contB++;
+        banco[contB] = nuovoId;
+        mostraCarta(banco[contB], false);
+    } // TO DO ---------------------------
+
 }

@@ -1,122 +1,121 @@
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BlackJack</title>
-    <script src="assets/js/script.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://cdn.dribbble.com/userupload/43262543/file/original-04f52355fe4ac7ece8d32201fa32382c.png?resize=1600x1200">
-    <style>
-        .fiches{
-                 width:100px;
-        }
-        #barraBasso,#fiches{
-                display:flex;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlackJack</title>
 
-    <style>
-        body {
-        font-family: 'Poppins', sans-serif;
-        color: white;
-        }
+  <!-- Font moderno per tutto il sito -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-        h1 {
-        font-family: 'Casino', cursive;
-        color: gold;
-        text-shadow: 0 0 10px orange;
-        }
-    </style>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="assets/js/script.js"></script>
+
+  <link rel="icon" href="https://cdn.dribbble.com/userupload/43262543/file/original-04f52355fe4ac7ece8d32201fa32382c.png?resize=1600x1200">
 </head>
 
 <body onload="avvio()">
-    <div id="tavolo">
-        <div id="titolo">
-            <img src="assets/img/blackjack_only_text.svg" id="logo">
-        </div>
-        <div class="carte">
 
-             <div class="punteggio">
-                    <p>Banco: <span id="pb">0</span></p>
-            </div>
-            <img src="assets/img/svg-cards/coperta.svg" id="0-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="1-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="2-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="3-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="4-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="5-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="6-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="7-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="8-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="9-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="10-banco">
-            <img src="assets/img/svg-cards/coperta.svg" id="11-banco">
-            
-        </div>
-        <div class="carte">
-            <img src="assets/img/svg-cards/coperta.svg" id="0-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="1-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="2-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="3-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="4-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="5-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="6-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="7-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="8-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="9-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="10-giocatore">
-            <img src="assets/img/svg-cards/coperta.svg" id="11-giocatore">
+  <main id="tavolo">
 
-             <div class="punteggio">
-                    <p>Punteggio: <span id="pg">0</span></p>
-            </div>
+    <section id="titolo">
+      <img src="assets/img/blackjack_only_text.svg" id="logo" alt="Logo BlackJack">
+
+      <!-- Mantengo id err perché il JS lo usa quando il giocatore sballa -->
+      <p id="err">Sballato ❌</p>
+    </section>
+
+    <!-- Area banco -->
+    <section class="area-gioco">
+      <div class="punteggio">
+        <p>Banco: <span id="pb">0</span></p>
+      </div>
+
+      <div class="carte">
+        <img src="assets/img/svg-cards/coperta.svg" id="0-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="1-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="2-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="3-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="4-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="5-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="6-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="7-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="8-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="9-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="10-banco">
+        <img src="assets/img/svg-cards/coperta.svg" id="11-banco">
+      </div>
+    </section>
+
+    <!-- Area giocatore -->
+    <section class="area-gioco">
+      <div class="carte">
+        <img src="assets/img/svg-cards/coperta.svg" id="0-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="1-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="2-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="3-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="4-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="5-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="6-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="7-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="8-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="9-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="10-giocatore">
+        <img src="assets/img/svg-cards/coperta.svg" id="11-giocatore">
+
+        <div class="punteggio">
+          <p>Giocatore: <span id="pg">0</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="barraBasso">
+
+      <div id="gestioneSoldi">
+        <div class="saldo-box">
+          <span>Saldo</span>
+          <strong id="budget"></strong>
         </div>
 
-        <div id="barraBasso">
-            <div id="gestioneSoldi">
-                <div id="budget"></div>
-                <div id="fiches">
-                    <div id="5" onclick="punta(5)">
-                        <img src="assets/img/fiches/5.png" class="fiches">
-                    </div>
-                    <div id="10" onclick="punta(10)">
-                        <img src="assets/img/fiches/10.png" class="fiches">
-                    </div>
-                    <div id="25" onclick="punta(25)">
-                        <img src="assets/img/fiches/25.png" class="fiches">
-                    </div>
-                    <div id="50" onclick="punta(50)">
-                        <img src="assets/img/fiches/50.png" class="fiches">
-                    </div>
-                    <div id="100" onclick="punta(100)">
-                        <img src="assets/img/fiches/100.png" class="fiches">
-                    </div>
-                    <div id="all" onclick="punta(1000)">
-                        <img src="assets/img/fiches/all-in.png" class="fiches">
-                    </div>
-                </div>
-                <div id="puntata">
-                    <button onclick="punta(-1)" id="-">-</button>
-                    <p id="soldi">0</p>
-                    <button onclick="punta(1)" id="+">+</button>
-                </div>
-            </div>
-            
-            
-                <div>
-                    <button onclick="pronto()" id="pronto">Gioca</button>
-                    <button onclick="carta()" id="carta">carta</button>
-                    <button   id="stai" onclick="stai()">stai</button>
-                    <button   id="raddoppia" onclick="raddoppia()">raddoppia</button>
-                    <button   id="split" onclick="split()">split</button>
-                    <button id="riavvia" onclick="riavvia()">Gioca ancora</button>
-                </div>
-            </div>
-        
-    </div>
+        <div id="fiches">
+          <div id="5" onclick="punta(5)">
+            <img src="assets/img/fiches/5.png" class="fiches">
+          </div>
+          <div id="10" onclick="punta(10)">
+            <img src="assets/img/fiches/10.png" class="fiches">
+          </div>
+          <div id="25" onclick="punta(25)">
+            <img src="assets/img/fiches/25.png" class="fiches">
+          </div>
+          <div id="50" onclick="punta(50)">
+            <img src="assets/img/fiches/50.png" class="fiches">
+          </div>
+          <div id="100" onclick="punta(100)">
+            <img src="assets/img/fiches/100.png" class="fiches">
+          </div>
+          <div id="all" onclick="punta(1000)">
+            <img src="assets/img/fiches/all-in.png" class="fiches">
+          </div>
+        </div>
+
+        <div id="puntata">
+          <button onclick="punta(-1)" id="-">-</button>
+          <p id="soldi">0</p>
+          <button onclick="punta(1)" id="+">+</button>
+        </div>
+      </div>
+
+      <div id="azioni">
+        <button onclick="pronto()" id="pronto">Gioca</button>
+        <button onclick="carta()" id="carta">Carta</button>
+        <button onclick="stai()" id="stai">Stai</button>
+        <button onclick="raddoppia()" id="raddoppia">Raddoppia</button>
+        <button onclick="split()" id="split">Split</button>
+        <button onclick="riavvia()" id="riavvia">Gioca ancora</button>
+      </div>
+
+    </section>
+
+  </main>
+
 </body>
-
 </html>

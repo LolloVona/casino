@@ -1,72 +1,295 @@
 /*
-  -TITOLI PRIMARI: color: #e6e6e6;
-  -TITOLI SECONDARI color: #d4af37;
-
-  -colori 'metallici': color: #c0c0c0;
-
-
+  PALETTE:
+  - Titoli primari: #e6e6e6
+  - Titoli secondari: #d4af37
+  - Metallici: #c0c0c0
 */
 
-
-
-
-body{
-  margin:0;
-   background: radial-gradient(circle at center, #0f3d2a 0%, #071a12 100%);
+/* Reset base: evita margini strani dei browser */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.carte img{
-  width: 0;
-  height: 0;
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  color: #e6e6e6;
+
+  /* Sfondo più moderno: verde casinò + effetto luce */
+  background:
+    radial-gradient(circle at top, rgba(212, 175, 55, 0.18), transparent 30%),
+    radial-gradient(circle at center, #14593d 0%, #071a12 70%);
 }
 
-#titolo{
-  display: flex;
-  justify-content: center;
-}
-#logo{
-  width: 60%;
-}
+/* Tavolo principale */
+#tavolo {
+  min-height: 100vh;
+  width: min(1200px, 95%);
+  margin: auto;
+  padding: 25px;
 
-#tavolo{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 22px;
+}
+
+/* Header/logo */
+#titolo {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Logo responsive */
+#logo {
+  width: min(480px, 80%);
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.45));
+}
+
+/* Messaggio errore: prima era inline style, ora gestito dal CSS */
+#err {
+  display: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(120, 0, 0, 0.45);
+  border: 1px solid rgba(255, 80, 80, 0.7);
+  color: #ffb3b3;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.25);
+}
+
+/* Singola area carte: banco / giocatore */
+.area-gioco {
+  width: 100%;
+  min-height: 175px;
+  padding: 18px;
+
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+/* Riga delle carte */
+.carte {
+  min-height: 155px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-#fiches{
-  display: flex;
-  gap: 10px;
-}
-.fiches{
-  background-color: white;
-  border-radius: 100px;
-}
-
-#barrabasso{
-  margin-top: 10px;
-  padding-top: 5px;
-  justify-content: space-around;
+/*
+  IMPORTANTE:
+  Il JS parte con carte invisibili e poi imposta width/height a 150px.
+  Quindi qui NON metto dimensioni fisse alle carte, altrimenti rischiamo di rompere la logica.
+*/
+.carte img {
+  width: 0;
+  height: 0;
+  transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-button{
-  background: linear-gradient(145deg, #d4af37, #b8962e);
-  color: #000;
-  height: 30px;
-  width: 75px;
-  color: #e6e6e6;
+/* Effetto quando una carta viene mostrata dal JS */
+.carte img[style] {
+  border-radius: 10px;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.45));
+}
+
+.carte img[style]:hover {
+  transform: translateY(-8px) rotate(-1deg);
+}
+
+/* Box punteggio */
+.punteggio {
+  display: none;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.punteggio p {
+  display: inline-block;
+  padding: 8px 18px;
+
+  border-radius: 999px;
+  background: linear-gradient(145deg, rgba(212, 175, 55, 0.22), rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(212, 175, 55, 0.45);
+
+  color: #d4af37;
   font-family: 'Oswald', sans-serif;
-  font-weight: 700;
+  font-size: 1.1rem;
   letter-spacing: 1px;
 }
 
-button:hover{
-  cursor: pointer;
-  box-shadow: black 10px;
-  background: linear-gradient(145deg, #ffd700, #c9a227);
-}
-.punteggio{
-  display:none;
+.punteggio span {
+  color: #fff;
 }
 
+/* Barra inferiore */
+#barraBasso {
+  width: 100%;
+  padding: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+
+  border-radius: 28px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.3);
+}
+
+/* Area soldi */
+#gestioneSoldi {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Box saldo */
+.saldo-box {
+  align-self: center;
+  min-width: 150px;
+  padding: 10px 18px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  border-radius: 16px;
+  background: linear-gradient(145deg, #111, #242424);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+}
+
+.saldo-box span {
+  color: #c0c0c0;
+}
+
+#budget {
+  color: #d4af37;
+}
+
+/* Fiches */
+#fiches {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#fiches div {
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+#fiches div:hover {
+  transform: translateY(-6px) scale(1.08);
+  filter: drop-shadow(0 10px 12px rgba(0, 0, 0, 0.4));
+}
+
+.fiches {
+  width: 80px;
+  border-radius: 100px;
+}
+
+/* Selettore puntata */
+#puntata {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+#soldi {
+  min-width: 80px;
+  padding: 8px 16px;
+
+  text-align: center;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d4af37;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+/* Area bottoni azione */
+#azioni {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Bottoni generali */
+button {
+  min-width: 110px;
+  height: 42px;
+  padding: 0 16px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: linear-gradient(145deg, #d4af37, #9d781c);
+  color: #111;
+
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  box-shadow: 0 8px 0 #5c4310, 0 15px 25px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+  background: linear-gradient(145deg, #ffd700, #c9a227);
+  box-shadow: 0 11px 0 #5c4310, 0 20px 28px rgba(0, 0, 0, 0.45);
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0 #5c4310, 0 8px 14px rgba(0, 0, 0, 0.35);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Responsive telefono */
+@media (max-width: 700px) {
+  #tavolo {
+    padding: 16px;
+  }
+
+  #barraBasso {
+    justify-content: center;
+  }
+
+  .fiches {
+    width: 60px;
+  }
+
+  button {
+    min-width: 95px;
+    height: 38px;
+    font-size: 0.8rem;
+  }
+
+  .area-gioco {
+    padding: 12px;
+  }
+}
