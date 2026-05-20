@@ -204,7 +204,10 @@ function mostraCarta(id,isGiocatore){
 
     document.getElementById(idCarta).src = "assets/img/svg-cards/"+nomeFile;
     setTimeout(1000);
-    controllaPunteggio();
+    if(isGiocatore)
+        controllaPunteggioG();
+    else
+        controllaPunteggioB();
     if(gameOver){
         nascondiButton();
         document.getElementById("riavvia").style.display="inline";
@@ -228,7 +231,7 @@ function carta(){
     mostraCarta(id, true);
 }
 
-function controllaPunteggio(){  
+function controllaPunteggioG(){  
     if(pg[0]>21){
         if(pg[1]==0){
             gameOver=true;  
@@ -242,14 +245,30 @@ function controllaPunteggio(){
     }
 }
 
+function controllaPunteggioB(){  
+    if(pb[0]>21){
+        if(pb[1]==0){
+            gameOver=true;  
+        }
+        else{
+            pb[0]=pb[0]-10;
+            pb[1]--;
+            document.getElementById("pb").innerText=pb[0];
+            controllaPunteggio();
+        }
+    }
+}
+
 function stai(){
     mostraCarta(banco[1], false); //mostro la seconda carta (false siccome è banco)
     //controllo se è minore di 17 in quanto se minore, deve ripescare.
-    while(pb < 17){
+    while(pb[0] < 17){
         nuovoId = estrazione();
         contB++;
         banco[contB] = nuovoId;
         mostraCarta(banco[contB], false);
-    } // TO DO ---------------------------
+    } 
+    controllaPunteggio
+
 
 }
